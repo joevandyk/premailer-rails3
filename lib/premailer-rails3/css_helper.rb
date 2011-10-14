@@ -6,7 +6,7 @@ module PremailerRails
 
     def css_for_doc(doc)
       css = doc.search('link[@type="text/css"]').map { |link|
-              url = link.attributes['href']
+              url = link.attributes['href'].to_s
               load_css_at_path(url) unless url.blank?
             }.reject(&:blank?).join("\n")
       css = load_css_at_path(:default) if css.blank?
@@ -36,7 +36,7 @@ module PremailerRails
                      path.sub("#{Rails.configuration.assets.prefix}/", '')
                    end
             if asset = Rails.application.assets.find_asset(file)
-              asset.body
+              asset.to_s
             else
               raise "Couldn't find asset #{file} for premailer-rails3."
             end
