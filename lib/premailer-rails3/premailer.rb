@@ -11,11 +11,15 @@ module PremailerRails
       ::Premailer.send(:include, Adapter.find(Adapter.use))
       doc = load_html(html)
 
+      css_string = CSSHelper.css_for_doc(doc)
+      doc = CSSHelper.remove_links(doc)
+
       options = {
         :with_html_string => true,
-        :css_string       => CSSHelper.css_for_doc(doc)
+        :preserve_styles => false,
+        :css_string       => css_string
       }
-      super(html, options)
+      super(doc.to_html, options)
     end
   end
 end
