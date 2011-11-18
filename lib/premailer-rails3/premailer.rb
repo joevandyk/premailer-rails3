@@ -16,7 +16,7 @@ module PremailerRails
 
       options = {
         :with_html_string => true,
-        :preserve_styles => false,
+        :preserve_styles => true,
         :include_style_tags => false,
         :css_string       => css_string
       }
