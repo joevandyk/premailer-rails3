@@ -17,6 +17,7 @@ module PremailerRails
       options = {
         :with_html_string => true,
         :preserve_styles => false,
+        :include_style_tags => false,
         :css_string       => css_string
       }
       super(doc.to_html, options)
